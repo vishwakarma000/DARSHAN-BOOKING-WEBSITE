@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Puja</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- <script>
+        function myFun(){
+            var a =document.getElementById("Fullname").value ;
+            var b =document.getElementById("phone_no").value ;
+            var c =document.getElementById("password").value ;
+            var d =document.getElementById("confirm_pass").value ;
+            var correct_way = /^[A-Za-z]+$/;
+            if(a.match(correct_way)){
+                true;
+            }else{
+                document.getElementById("Message full-name").innerHTML="*Enter alphabets letter only" ;
+               return false;
+            }
+            if(b.length<10||b.length>10){
+                document.getElementById("Message phn-no").innerHTML="*Enter 10 digit phone no only" ;
+                return false;
+            }else{
+                true;
+            }
+            if(c.length<8){
+                document.getElementById("Message pass").innerHTML="*Password must be 8-digit long or more" ;
+                return false;
+            }else{
+                true;
+            }
+            
+            if(c!=d){
+                document.getElementById("Message pass-cnf").innerHTML="*Oops! Password doesnt match " ;
+                return false;
+            }else{
+                true;
+            }
+        }
+    </script> -->
+    <div class="wrapper">
+        <form action="" method="">
+            <div class="logo">
+                <img src="img/logo1.jpg">
+            </div>
+            <h1>Book Pass</h1>
+            <div class="input-box">
+                <label for="date">Select Date:</label>
+                <input type="date" class="date" required>
+                <small> <span id="Message full-name"></span></small>
+
+            </div>
+            <div class="input-box">
+                <label for="date">Select the Time:</label>
+                <select id="date" class="date" name="date">
+                    <option value="07:00-08:00">07:00-08:00</option>
+                    <option value="08:00-09:00">08:00-09:00</option>
+                    <option value="09:00-10:00">09:00-10:00</option>
+                    <option value="10:00-11:00">10:00-11:00</option>                      
+                    <option value="11:30-12:30">11:30-12:30</option>  
+                    <option value="12:30-13:30">12:30-13:30</option>  
+                    <option value="13:30-14:30">13:30-14:30</option>  
+                    <option value="14:30-15:30">14:30-15:30</option>  
+                    <option value="15:30-16:30">15:30-16:30</option>  
+                    <option value="16:30-17:30">16:30-17:30</option>  
+                    <option value="17:30-18:30">17:30-18:30</option>  
+                    <option value="18:30-19:30">18:30-19:30</option>  
+                    
+                </select>
+            </div>
+            <div class="input-box">
+                <label for="date">Select the Type:</label>
+                <select id="date" class="date" name="date">
+                    <option value="Murti Abhishek">Murti Abhishek</option>
+                    <option value="Atharavshirsh Path">Atharavshirsh Path</option>
+                    <option value="Hoam Hawan">Hoam Hawan</option>                      
+                                      
+                </select>
+            </div>
+            <div class="input-box">
+                <label for="Person">No. fo Person:</label>
+                <select id="Person" name="person">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>   
+                    <option value="4">4</option>  
+                    <option value="5">5</option>  
+                    <option value="6">6</option>                   
+                </select>
+            </div>
+
+            <button type="submit" class="book-btn" name="Book">Book</button>
+            <div class="register-pg">
+                <label>Back to</label> <a href="home.php">Home Page</a>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,172 @@
+<?php
+    $Fullname = $_POST['Fullname'];
+    $phone_no = $_POST['phone_no'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $confirm_pass = $_POST['confirm_pass'];
+    
+
+    //Database connection  
+    // i- integer , d- double,  s- string,  b-blob  for bind param and also gender will treated as string
+
+    $conn = new mysqli_connect('localhost','root','root','sansthan');
+    if($conn->connect_error){
+        die('connection Failed : '.$conn->connect_error);
+    }else{
+        $stmt = $conn->prepare("insert into registration(Fullname, phone_no, email, password, confirm_pass)
+        value( ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sisss",$Fullname, $phone_no, $email, $password, $confirm_pass);
+        $stmt->execute();
+        echo "registeration successfully...";
+        $stmt->close();
+        $conn->close();
+    }
+
+
+
+
+?>
+
+
+
+
+
+
+
+
+
+
+////new
+
+<?php
+
+    
+    $DATABASE_HOST = 'localhost';
+    $DATABASE_USER = 'root';
+    $DATABASE_PASS = '';
+    $DATABASE_NAME = 'sansthan';
+    //Database connection  
+    // i- integer , d- double,  s- string,  b-blob  for bind param and also gender will treated as string
+   
+    $conn = mysqli_connect( $DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+    if($conn->connect_error){
+        die('Connection Failed : '.$conn->connect_error);
+    }
+    $Fullname = $_POST['Fullname'];
+    $phone_no = $_POST['phone_no'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $confirm_pass = $_POST['confirm_pass'];
+     
+    $sql = "INSERT INTO registration (Fullname, phone_no, email, password, confirm_pass) VALUES ('$Fullname','$phone_no','$email','$password','$confirm_pass')";
+    if($conn->query($sql)===TRUE){
+        echo "Regisration Successfull";
+    }
+    else{
+        echo "Error: " .$sql. "<br>" .$conn->error;
+    }
+
+
+?>
+
+
+//Database connection  
+    // i- integer , d- double,  s- string,  b-blob  for bind param and also gender will treated as string
+   111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+   11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+
+
+
+if (!isset($_POST['Fullname'],$_POST['phone_no'],$_POST['email'],$_POST['password'],$_POST['confirm_pass'])){
+    exit('Empty Field(s)');
+}
+
+if (empty($_POST['Fullname']) || empty($_POST['phone_no']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['confirm_pass'])){
+ exit('Value Empty');
+}  
+
+if ($stmt->num_rows > 0){
+    echo 'This phone number is already registered. Try again with a different phone number.' ;
+}
+else{
+    $stmt->close();
+
+    if ($stmt = $conn->prepare('INSERT INTO registration (Fullname, phone_no, email, password, confirm_pass) VALUES (?, ?, ?, ?, ?)')){
+        $stmt->bind_param('sisss',$_POST['Fullname'],$_POST['phone_no'],$_POST['email'],$_POST['password'],$_POST['confirm_pass']);
+        $stmt->execute();
+        echo "successfulll" ;
+    }else{
+        echo 'Error Occured';
+    }
+
+}
+else{
+    echo "Error: " .$sql. "<br>" .$conn->error;
+}
+$conn->close();
+
+?>
+
+///////////////////////////////////////////////////////////login wala ///////////////varun///////////////////////////////////////////
+<?php
+if($_SERVER["REQUEST_METHOD"]=="POST")
+{
+    //retrive data
+    $phone_no = $_POST['phone_no'];
+    $password = $_POST['password'];
+
+    $DATABASE_HOST = 'localhost';
+    $DATABASE_USER = 'root';
+    $DATABASE_PASS = '';
+    $DATABASE_NAME = 'sansthan';
+    //db connection
+    $conn = mysqli_connect( $DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME) or  die("connection failed");
+    //validation
+    $query = "SELECT * FROM registration WHERE phone_no= '$phone_no' AND password= '$password'";
+
+    $result = $conn->query($query);
+
+    if( $result->num_rows == 1 ){
+        //login sucessful
+        echo "login hogya bhaii!!!" ;
+        exit();
+    }
+    else{
+        //login failed
+         echo'<script> alert("incorrect mobile number or password")</script>';
+        exit();
+    }
+
+    $conn->close();
+
+}
+?>
+
+///////////////////////////////////////my //////////////////////login///php///////////////////////
+
+<?php
+if (isset($_POST["login"]))  {
+    $phone_no = $_POST["phone_no"] ;
+    $password = $_POST["password"] ;
+    require_once "connect.php";
+    $sql = "SELECT * FROM registration WHERE phone_no = '$phone_no'";
+    $result = mysqli_query($conn, $sql);
+    $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    if($user){
+        if (password_verify($password, $user["password"])){
+            header("Location: land.html") ;
+            die();
+        }else{
+            echo " Invalid password";
+        }
+    }else{
+        echo "Enter valid phone number";
+    }
+}
+?>
+
+
+
+
+
+
