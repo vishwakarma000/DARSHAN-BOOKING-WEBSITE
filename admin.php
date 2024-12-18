@@ -1,3 +1,32 @@
+<?php
+session_start();
+if (isset( $_SESSION["admin_id"])){
+    // header("Location: login.php");
+    echo"<script> window.location.href = 'admin_side_page.php'</script>";
+}
+if (isset($_POST["login"])) {
+    $id = $_POST["id"];
+    $password = $_POST["password"];
+    require_once "connect.php";
+    $sql = "SELECT * FROM admin WHERE id = '$id'";
+    $result = mysqli_query($conn, $sql);
+    $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    $user_pass = $user["password"];
+    if ($user) {
+        if ($password == $user_pass) { // Check if entered password matches the password in the database
+            $_SESSION['admin_id'] = $user['id'];
+           
+            echo "<script> window.location.href = 'admin_side_page.php'</script>";
+            die();
+        } else {
+            echo "<script>alert('Invalid password')</script>";
+        }
+    } else {
+        echo "<script>alert('Enter valid admin id')</script>";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,30 +43,6 @@
 </head>
 
 <body> 
-<?php
- session_start();
-if (isset($_POST["login"]))  {
-    $id = $_POST["id"] ;
-    $password = $_POST["password"] ;
-    require_once "connect.php";
-    $sql = "SELECT * FROM admin WHERE id = '$id'";
-    $result = mysqli_query($conn, $sql);
-    $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    $user_pass = $user["password"];
-    if($user){
-        if( $user_pass){
-
-            echo"<script> window.location.href = 'admin_side_page.html'</script>";
-            die();
-        }else{
-            echo " Invalid password";
-        }
-    }else{
-        echo "Enter valid admin id";
-    }
-}
-?>
-
     <div class="wrapper">
         <form action="admin.php" method="post" >
    
@@ -54,10 +59,6 @@ if (isset($_POST["login"]))  {
                 <div class="input-box">
                     <!--Password-->
                     <input type="password" placeholder="Password" name="password" id="password" required><i class='bx bxs-lock'></i><br>
-                </div>
-                <div class="rem-me">
-                    <label><input type="checkbox">Remember me </label>
-                    <a href="#">Forget password?</a>
                 </div>
                 <button type="submit" name="login" class="sub-btn" >login</button>
                 

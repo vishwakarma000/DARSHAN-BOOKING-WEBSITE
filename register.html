@@ -15,7 +15,7 @@
             var b =document.getElementById("phone_no").value ;
             var c =document.getElementById("password").value ;
             var d =document.getElementById("confirm_pass").value ;
-            var correct_way = /^[A-Za-z]+$/;
+            var correct_way = /^[A-Za-z\s]+$/  ;
             if(a.match(correct_way)){
                 true;
             }else{

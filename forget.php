@@ -1,8 +1,6 @@
 
 <?php
-
-session_start();
-
+session_start();  
 include "connect.php";
 require 'phpmailer2/SMTP.php';
 require 'phpmailer2/POP3.php';
@@ -41,13 +39,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $mail->isSMTP();
                 $mail->Host       = 'smtp.gmail.com';
                 $mail->SMTPAuth   = true;
-                $mail->Username   = 'idarshanbook@gmail.com'; // Your Gmail address
-                $mail->Password   = 'vhif uujc yuap kgnt'; // Your Gmail app password
+                $mail->Username   = 'idarshanbook@gmail.com'; 
+                $mail->Password   = 'vhif uujc yuap kgnt'; 
                 $mail->SMTPSecure = 'tls';
                 $mail->Port       = 587;
 
-                // Set email body with a link to reset-password.html
-                $resetLink = 'http://localhost/DARSHAN%20BOOKING/reset.html?token=' . $resetToken;
+                $resetLink = 'http://localhost/DARSHAN%20BOOKING/reset.php?token=' . $resetToken;
                 $mailBody = 'Click the following link to reset your password: ' . $resetLink;
 
                 // Set email content
@@ -60,15 +57,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Send the email.
                 $mail->send();
 
-                // Echo JavaScript to show the pop-up
-                echo 'Password reset link has been sent to your email.';
+                echo '<script> alert("Password reset link has been sent to your email.")</script>';
+                echo '<script>window.location.href = "forget.html"</script>';
+                // echo 'Password reset link has been sent to your email.';
                 exit();
             } catch (Exception $e) {
-                // Handle mailer exception (e.g., log error)
                 echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
             }
         } else {
-            echo 'Email not found. Please enter a registered email.';
+            echo '<script> alert("Email not found. Please enter a registered email.")</script>';
+            echo '<script>window.location.href = "forget.html"</script>';
+
+            // echo 'Email not found. Please enter a registered email.';
         }
 
         $stmt->close();
@@ -78,12 +78,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $conn->close();
 } else {
-    // Redirect to the forgot-password.html if accessed without form submission
     // header("Location: forgot.php");
     echo"<script> window.location.href = 'forget.php'</script>";
+    
     exit();
 }
 ?>
+
+<!-- https://bookdarshan.000webhostapp.com/reset.php -->
+
+
+
+
+
+
+
+
     
        
 

@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if (!isset( $_SESSION["user"])){
+if (!isset( $_SESSION["email"])){
     // header("Location: login.php");
     echo"<script> window.location.href = 'login.php'</script>";
 }
@@ -27,43 +27,42 @@ if (!isset( $_SESSION["user"])){
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <!-- Just an image -->
       
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="home.php">
           <img src="img/logo1.jpg" style="border-radius: 10px;" width="40" height="40"  alt="logo">
         </a>
       <!-- nav bars -->
-      <a class="navbar-brand" href="#">Darshan Booking Website</a>
+      <a class="navbar-brand" href="home.php">Darshan Booking Website</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About us</a>
+            <a class="nav-link" href="about.php">About us</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact us</a>
+            <a class="nav-link" href="contact.php">Contact us</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-              Services
-            </a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="darshan.html">Darshan Pass</a>
-              <a class="dropdown-item" href="puja.html">Puja pass</a>
-              <a class="dropdown-item" href="donation.html">Donation</a>
-
-            </div>
-          </li>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Services
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="darshan.php">Darshan Pass</a>
+            <a class="dropdown-item" href="bookpuja.php">Puja pass</a>
+            <a class="dropdown-item" href="donation.php">Donation</a>
+          </div>
+        </li>
         </ul>
         
       </div>
       <div class="form-inline mt-2 mt-md-0">
       <!-- <a class="btn btn-outline-success my-2 my-sm-0 mr-1" href="#"  style="border-radius: 10px;" type="submit">Logout</a> -->
-      <a href="notification.html" style="text-decoration: none; color: inherit; font-size: 30px;" ><i class='bx bx-bell' ></i></a>
-      <a href="logout.php" style="text-decoration: none; color: inherit; font-size: 35px;" ><i class='bx bx-power-off' ></i></a>
+      <a href="notification.php" style="text-decoration: none; color: inherit; font-size: 30px;" ><i class='bx bx-bell' ></i></a>
+      <a href="logout.php" onclick="return confirm('Are you sure you want to logout?');" style="text-decoration: none; color: inherit; font-size: 35px;" ><i class='bx bx-power-off' ></i></a>
 
     </div>
     </nav>
@@ -127,7 +126,7 @@ if (!isset( $_SESSION["user"])){
       <img src="img/profile.png" height="200" class="card-img-top p-3 rounded-circle" alt="...">
       <div class="card-body mt-0 " >
         <!-- <h5 class="card-title ">Darshan Pass</h5> -->
-        <a href="#" class="btn btn-outline-warning mb-3 ">My Profile</a>
+        <a href="profile.php" class="btn btn-outline-warning mb-3 ">My Profile</a>
       </div>
     </div>
   </div>
@@ -137,7 +136,7 @@ if (!isset( $_SESSION["user"])){
       <img src="img/darshan.jpg" height="200" class="card-img-top p-3 rounded-circle" alt="...">
       <div class="card-body mt-0 " >
         <!-- <h5 class="card-title ">Darshan Pass</h5> -->
-        <a href="darshan.html" class="btn btn-outline-warning mb-3 ">Darshan Pass</a>
+        <a href="darshan.php" class="btn btn-outline-warning mb-3 ">Darshan Pass</a>
       </div>
     </div>
   </div>
@@ -147,7 +146,7 @@ if (!isset( $_SESSION["user"])){
     <img src="img/puja1.jpg" height="200" class="card-img-top p-3 rounded-circle " alt="...">
     <div class="card-body mt-0">
       <!-- <h5 class="card-title">Puja Pass</h5> -->
-      <a href="bookpuja.html" class="btn btn-outline-warning mb-3 ">Puja Pass</a>
+      <a href="bookpuja.php" class="btn btn-outline-warning mb-3 ">Puja Pass</a>
     </div>
   </div>
  </div>
@@ -157,7 +156,7 @@ if (!isset( $_SESSION["user"])){
     <img src="img/donation.png" height="200" class="card-img-top p-3 rounded-circle " alt="...">
     <div class="card-body mt-0">
       <!-- <h5 class="card-title">Donation</h5> -->
-      <a href="login.php" class="btn btn-outline-warning mb-3 ">Donation</a>
+      <a href="donation.php" class="btn btn-outline-warning mb-3 ">Donation</a>
     </div>
   </div>
  </div>
@@ -176,17 +175,17 @@ if (!isset( $_SESSION["user"])){
       <img src="img/gallery.jpg" height="200" class="card-img-top p-3 rounded-circle" alt="...">
       <div class="card-body mt-0 " >
         <!-- <h5 class="card-title ">Darshan Pass</h5> -->
-        <a href="login.php" class="btn btn-outline-warning mb-3 ">Gallery</a>
+        <a href="gallery.php" class="btn btn-outline-warning mb-3 ">Gallery</a>
       </div>
     </div>
   </div>
-  <!-- darshan book -->
+  <!-- My booking -->
   <div class="col-md-3 text-center mx-auto ">
     <div class="card ml-3 my-4  rounded-circle " style="width: 13rem;">
       <img src="img/booking.png" height="200" class="card-img-top p-3 rounded-circle" alt="...">
       <div class="card-body mt-0 " >
         <!-- <h5 class="card-title ">Darshan Pass</h5> -->
-        <a href="#" class="btn btn-outline-warning mb-3 ">My Booking</a>
+        <a href="mybooking.php" class="btn btn-outline-warning mb-3 ">My Booking</a>
       </div>
     </div>
   </div>
@@ -196,7 +195,7 @@ if (!isset( $_SESSION["user"])){
     <img src="img/feedback.png" height="200" class="card-img-top p-3 rounded-circle " alt="...">
     <div class="card-body mt-0">
       <!-- <h5 class="card-title">Puja Pass</h5> -->
-      <a href="#" class="btn btn-outline-warning mb-3 ">Feedback</a>
+      <a href="feedback.php" class="btn btn-outline-warning mb-3 ">Feedback</a>
     </div>
   </div>
  </div>
@@ -206,13 +205,15 @@ if (!isset( $_SESSION["user"])){
     <img src="img/contact.png" height="200" class="card-img-top p-3 rounded-circle " alt="...">
     <div class="card-body mt-0">
       <!-- <h5 class="card-title">Donation</h5> -->
-      <a href="#" class="btn btn-outline-warning mb-3 ">Contact Us</a>
+      <a href="contact.php" class="btn btn-outline-warning mb-3 ">Contact Us</a>
     </div>
   </div>
  </div>
 
 </div>
 </div>
+
+<?php include "footer.php" ;?>
   </body>
 </html>
 

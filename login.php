@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if (isset( $_SESSION["user"])){
+if (isset( $_SESSION["email"])){
     // header("Location: home.php");
     echo"<script> window.location.href = 'home.php'</script>";
 }
@@ -21,7 +21,7 @@ if (isset( $_SESSION["user"])){
 <div class="wrapper">
 <!-- php documentttt -->
 <?php
-if(isset($COOKIE['email']) && isset($COOKIE['password'])){  /////////////////////////////////////////
+if(isset($_COOKIE['email']) && isset($_COOKIE['password'])){  /////////////////////////////////////////
     $id=$_COOKIE['email'];
     $pass=$_COOKIE['password'];
 }else{
@@ -43,11 +43,13 @@ if (isset($_POST["login"]))  {
             setcookie('email',$_POST['email'],time() + (60*60*24));
             setcookie('password',$_POST['password'],time() + (60*60*24));
             }            
-            session_start();
+            
             $_SESSION["user"] = "yes";                                                       ////////////////////////////////////
             // header("Location: home.php") ;
+            $_SESSION["email"] = $email;   ////here i have modified
             echo"<script> window.location.href = 'home.php'</script>";
             die();
+            
         }else{
             echo " Invalid password";
         }

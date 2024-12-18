@@ -11,25 +11,17 @@ if(isset($_POST["submit"])){
                 $passwordHash = password_hash($password, PASSWORD_DEFAULT);
                 $errors = array();
     
-                // if (empty($Fullname) OR empty($phone_no) OR empty($email) OR empty($password) OR empty($confirm_pass) ) {
-                //     array_push($error, "All fields are required");
-                // }
-                    // if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-                    //     array_push($errors, "Email is not valid");
-                    // }
-                // if(strlen($password)<8){
-                //     array_push($error, "Password must be atleast 8 character long ");
-                // }
-                //     if($password!==$confirm_pass){
-                //         die("Password does not match ");
-                //     }
+     
     require_once "connect.php" ;
     $sql = "SELECT * FROM registration WHERE email = '$email'" ;
     $result = mysqli_query($conn, $sql);
     $rowCount = mysqli_num_rows($result);
     if($rowCount>0){
-        die("User is already exists");
+        echo'<script> alert("User already exist ,please with another email ID")</script>';
+        // header("Location: login.php") ;
+        echo"<script> window.location.href = 'register.html'</script>";
 
+        die();
     }
     if(count($errors)>0){
         foreach($errors as $error){
@@ -43,6 +35,7 @@ if(isset($_POST["submit"])){
         if($prepareStmt){
             mysqli_stmt_bind_param($stmt, "siss", $Fullname, $phone_no, $email, $passwordHash );
             mysqli_stmt_execute($stmt);
+           
             echo'<script> alert("Registration successfull")</script>';
             // header("Location: login.php") ;
             echo"<script> window.location.href = 'login.php'</script>";
